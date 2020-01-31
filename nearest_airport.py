@@ -7,18 +7,36 @@ access_token = "NzE3NmMyMmYtYjYxNS00NTBlLWE1ZGYtMmJhYjdiNzhlNDBmZjUwZWRjNWQtODk4
 app = Flask(__name__)
 
 
+def name(person_id):
+    headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
+    response = requests.get("https://api.ciscospark.com/v1/people/" + person_id, headers=headers)
+    response = json.loads(response.text)
+    return response["displayName"]
+
+
 def get_text(text_id):
     headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
-    response = requests.get("https://api.ciscospark.com/v1/messages/"+text_id, headers=headers)
+    response = requests.get("https://api.ciscospark.com/v1/messages/" + text_id, headers=headers)
     text = json.loads(response.text)
     return text['text']
 
 
-def post_message(room_id, text_id):
+def post_message(room_id, text):
     headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
-    data = {'roomId': room_id, 'text': get_text(text_id)}
+    data = {'roomId': room_id, 'markdown': text}
     response = requests.post("https://api.ciscospark.com/v1/messages", json=data, headers=headers)
     return response.text
+
+
+# Bot Functions
+def bot_greets(room_id, person_id):
+    post_message(room_id, "Hello " + name(person_id) + ", This Bot helps you find nearest Airport, Simply provide me "
+                                                       " Name or co-ordinates of any place and I will return nearest "
+                                                       "Airport details \n\n- **loc &lt;place&gt;**")
+
+
+def bot_loc(room_id, loc):
+    post_message(room_id, loc + "Hello")
 
 
 @app.route('/', methods=['POST'])
@@ -29,10 +47,16 @@ def main():
     if person_email == "testbot2.1@webex.bot":
         return "DONE"
     text_id = data['id']
+    person_id = data['personId']
     room_id = data["roomId"]
-    return json.loads(post_message(room_id, text_id))
+    text = get_text(text_id)
+    if text.lower() == "hi" or text.lower() == "hello":
+        bot_greets(room_id, person_id)
+    elif "loc " in text.lower():
+        bot_loc(room_id, "loc")
+
+    return "True"
 
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
-
