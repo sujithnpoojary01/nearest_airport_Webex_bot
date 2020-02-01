@@ -35,6 +35,10 @@ def bot_greets(room_id, person_id):
                                                        "Airport details \n\n- **loc &lt;place&gt;**")
 
 
+def bot_invalid(room_id):
+    post_message(room_id, "Sorry I dint understand that")
+
+
 def bot_loc(room_id, loc):
     post_message(room_id, loc + "Hello")
 
@@ -50,10 +54,19 @@ def main():
     person_id = data['personId']
     room_id = data["roomId"]
     text = get_text(text_id)
+    room_type = data["roomType"]
+    if room_type == "group":
+        text = text.strip("Test Bot 2.1")
     if text.lower() == "hi" or text.lower() == "hello":
         bot_greets(room_id, person_id)
-    elif "loc " in text.lower():
+    elif len(text) <= 4:
+        bot_invalid(room_id)
+    elif text[0].lower() == "l" and text[1].lower() == "o" and text[2].lower() == "c" and text[3] == " ":
         bot_loc(room_id, "loc")
+    elif text[0].lower() == "c" and text[1].lower() == "o" and text[2].lower() == "r" and text[3] == " ":
+        bot_cor(room_id, "loc")
+    else:
+        bot_invalid(room_id)
 
     return "True"
 
