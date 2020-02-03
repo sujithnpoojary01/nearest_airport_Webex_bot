@@ -25,6 +25,7 @@ def post_message(room_id, text):
     headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
     data = {'roomId': room_id, 'markdown': text}
     response = requests.post("https://api.ciscospark.com/v1/messages", json=data, headers=headers)
+    print(response)
     return response.text
 
 
