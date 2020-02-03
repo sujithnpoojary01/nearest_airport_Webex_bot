@@ -40,7 +40,50 @@ def bot_invalid(room_id):
 
 
 def bot_loc(room_id, loc):
-    post_message(room_id, loc + "Hello")
+    url = "https://us1.locationiq.com/v1/search.php"
+
+    data = {
+        'key': '38811a440c2ff2',
+        'q': loc,
+        'format': 'json'
+    }
+
+    response = requests.get(url, params=data)
+    response = json.loads(response.text)
+    print(response)
+    lat = response[0]["lat"]
+    lon = response[0]["lon"]
+    dp = response[0]["display_name"]
+    bot_cor(room_id, lon, lat, dp)
+
+
+def bot_cor(room_id, lon, lat, dp):
+    link = "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/nearest"
+
+    data = {"lng": lon, "lat": lat}
+
+    head = {
+        'x-rapidapi-host': "cometari-airportsfinder-v1.p.rapidapi.com",
+        'x-rapidapi-key': "0d9e22f3aamsh555874dd0c2b481p1b3244jsn430ecfb5fd9a"
+    }
+
+    res = requests.request("GET", link, headers=head, params=data)
+    res = json.loads(res.text)
+    code = res["code"]
+    link = "https://airport-info.p.rapidapi.com/airport"
+
+    data = {"iata": code}
+
+    headers = {
+        'x-rapidapi-host': "airport-info.p.rapidapi.com",
+        'x-rapidapi-key': "0d9e22f3aamsh555874dd0c2b481p1b3244jsn430ecfb5fd9a"
+    }
+
+    response = requests.request("GET", link, headers=headers, params=data)
+
+    response = json.loads(response.text)
+    post_message(room_id, " Place :"+dp+"\n\n"+"Airport Name :"+response['name']+"\n\n"+"Airport Code :"+response['iata']+"\n\n"+"Location :"+response["location"])
+    print(res["code"])
 
 
 @app.route('/', methods=['POST'])
@@ -57,14 +100,15 @@ def main():
     room_type = data["roomType"]
     if room_type == "group":
         text = text.strip("Test Bot 2.1")
-    if text.lower() == "hi" or text.lower() == "hello":
+    if text.lower() == "hi" or text.lower() == "hello" or text.lower() == "help":
         bot_greets(room_id, person_id)
     elif len(text) <= 4:
         bot_invalid(room_id)
     elif text[0].lower() == "l" and text[1].lower() == "o" and text[2].lower() == "c" and text[3] == " ":
-        bot_loc(room_id, "loc")
+        text = text.strip("loc ")
+        bot_loc(room_id, text)
     elif text[0].lower() == "c" and text[1].lower() == "o" and text[2].lower() == "r" and text[3] == " ":
-        bot_cor(room_id, "loc")
+        bot_loc(room_id, text)
     else:
         bot_invalid(room_id)
 
