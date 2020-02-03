@@ -106,7 +106,7 @@ def main():
     elif len(text) <= 4:
         bot_invalid(room_id)
     elif text[0].lower() == "l" and text[1].lower() == "o" and text[2].lower() == "c" and text[3] == " ":
-        text = text.strip("loc ")
+        text = text[4:]
         print(text)
         bot_loc(room_id, text)
     elif text[0].lower() == "c" and text[1].lower() == "o" and text[2].lower() == "r" and text[3] == " ":
