@@ -53,7 +53,7 @@ def bot_loc(room_id, loc):
         dp = response[0]["display_name"]
         bot_cor(room_id, lon, lat, dp)
     except:
-        post_message(room_id, "Could not find the place, try modiyfing the keyword or be more specific by adding the state/country of place as given below\n\n"+"**loc **"+loc+", **lt;State/Countrygt;**")
+        post_message(room_id, "Could not find the place, try modiyfing the keyword or be more specific by adding the state/country of place as given below\n\n"+"**loc **"+loc+", **&lt;State/Country&gt;**")
 
 
 def bot_cor(room_id, lon, lat, dp):
