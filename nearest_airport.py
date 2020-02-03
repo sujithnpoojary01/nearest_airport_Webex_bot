@@ -30,8 +30,8 @@ def post_message(room_id, text):
 
 # Bot Functions
 def bot_greets(room_id, person_id):
-    post_message(room_id, "Hello " + name(person_id) + ", This Bot helps you find nearest Airport, Simply provide me "
-                                                       " Name or co-ordinates of any place and I will return nearest "
+    post_message(room_id, "Hello " + name(person_id) + ", I am a Demo Bot! I can help you find nearest Airport, Simply provide me "
+                                                       " Name of any place and I will return nearest "
                                                        "Airport details \n\n- **loc &lt;place&gt;**")
 
 
