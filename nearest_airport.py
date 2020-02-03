@@ -11,7 +11,7 @@ def name(person_id):
     headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
     response = requests.get("https://api.ciscospark.com/v1/people/" + person_id, headers=headers)
     response = json.loads(response.text)
-    return response["firstname"]
+    return response["firstName"]
 
 
 def get_text(text_id):
