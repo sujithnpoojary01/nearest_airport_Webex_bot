@@ -32,7 +32,9 @@ def post_message(room_id, text):
 def bot_greets(room_id, person_id):
     post_message(room_id, "Hello " + name(person_id) + ", I am a Demo Bot! I can help you find nearest Airport, Simply provide me "
                                                        "the name of any place and I will return nearest "
-                                                       "Airport details \n\n- type **loc &lt;place&gt;**")
+                                                       "Airport details \n\n- type **loc &lt;place&gt;** Example: loc Hampi **or**loc Chandler, Arizona
+
+")
 
 
 def bot_invalid(room_id):
