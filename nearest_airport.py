@@ -31,12 +31,12 @@ def post_message(room_id, text):
 # Bot Functions
 def bot_greets(room_id, person_id):
     post_message(room_id, "Hello " + name(person_id) + ", I am a Demo Bot! I can help you find nearest Airport, Simply provide me "
-                                                       " Name of any place and I will return nearest "
-                                                       "Airport details \n\n- **loc &lt;place&gt;**")
+                                                       "the name of any place and I will return nearest "
+                                                       "Airport details \n\n- type **loc &lt;place&gt;**")
 
 
 def bot_invalid(room_id):
-    post_message(room_id, "Sorry I dint understand that")
+    post_message(room_id, "Sorry I dint understand that\n\ntype **loc &lt;place&gt;**")
 
 
 def bot_loc(room_id, loc):
