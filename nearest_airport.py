@@ -95,15 +95,18 @@ def main():
     person_id = data['personId']
     room_id = data["roomId"]
     text = get_text(text_id)
+    print(text)
     room_type = data["roomType"]
     if room_type == "group":
         text = text.strip("Nearest Airport")
+        print(text)
     if text.lower() == "hi" or text.lower() == "hello" or text.lower() == "help":
         bot_greets(room_id, person_id)
     elif len(text) <= 4:
         bot_invalid(room_id)
     elif text[0].lower() == "l" and text[1].lower() == "o" and text[2].lower() == "c" and text[3] == " ":
         text = text.strip("loc ")
+        print(text)
         bot_loc(room_id, text)
     elif text[0].lower() == "c" and text[1].lower() == "o" and text[2].lower() == "r" and text[3] == " ":
         bot_loc(room_id, text)
