@@ -82,7 +82,7 @@ def bot_cor(room_id, lon, lat, dp):
     response = requests.request("GET", link, headers=headers, params=data)
 
     response = json.loads(response.text)
-    post_message(room_id, " **Place :**"+dp+"\n\n"+"**Airport Name :**"+response['name']+"\n\n"+"**Airport Code :**"+response['iata']+"\n\n"+"**Location :**"+response["location"])
+    post_message(room_id, " **Place :**"+dp+"\n\n"+"**Nearest Airport :**"+response['name']+"\n\n"+"**Airport Code :**"+response['iata']+"\n\n"+"**Airport Location :**"+response["location"])
     print(res["code"])
 
 
