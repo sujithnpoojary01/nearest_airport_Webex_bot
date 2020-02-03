@@ -11,7 +11,7 @@ def name(person_id):
     headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
     response = requests.get("https://api.ciscospark.com/v1/people/" + person_id, headers=headers)
     response = json.loads(response.text)
-    return response["firstName"]
+    return response["nickName"]
 
 
 def get_text(text_id):
@@ -97,7 +97,7 @@ def main():
     text = get_text(text_id)
     room_type = data["roomType"]
     if room_type == "group":
-        text = text.strip("Test Bot 2.1")
+        text = text.strip("Nearest Airport")
     if text.lower() == "hi" or text.lower() == "hello" or text.lower() == "help":
         bot_greets(room_id, person_id)
     elif len(text) <= 4:
