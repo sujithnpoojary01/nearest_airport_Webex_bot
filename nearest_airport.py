@@ -3,8 +3,7 @@ import requests
 import json
 from flask import Flask, request
 
-access_token = "NzE3NmMyMmYtYjYxNS00NTBlLWE1ZGYtMmJhYjdiNzhlNDBmZjUwZWRjNWQtODk4_PF84_6121c98f-64c5-48a2-95f7" \
-               "-6e1f074ad37f "
+access_token = "Zjk3Y2I5OTAtZWEwZS00YzdkLTg5YTAtYzQ3YjFiM2NjY2JhNmRlMDFlNjItM2Rh_PF84_6121c98f-64c5-48a2-95f7-6e1f074ad37f"
 app = Flask(__name__)
 
 
@@ -92,7 +91,7 @@ def main():
     json_data = request.json
     data = json_data['data']
     person_email = data['personEmail']
-    if person_email == "testbot2.1@webex.bot":
+    if person_email == "nearest_airport@webex.bot":
         return "DONE"
     text_id = data['id']
     person_id = data['personId']
