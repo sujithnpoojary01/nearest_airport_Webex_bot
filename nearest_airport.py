@@ -36,7 +36,7 @@ def bot_greets(room_id, person_id):
 
 
 def bot_invalid(room_id):
-    post_message(room_id, "Sorry I dint understand that. Type **help** to see how I can assist you.)
+    post_message(room_id, "Sorry I dint understand that. Type **help** to see how I can assist you.")
 
 
 def bot_loc(room_id, loc):
