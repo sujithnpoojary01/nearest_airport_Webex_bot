@@ -47,7 +47,6 @@ def bot_loc(room_id, loc):
 
         response = requests.get(url, params=data)
         response = json.loads(response.text)
-        print(response)
         lat = response[0]["lat"]
         lon = response[0]["lon"]
         dp = response[0]["display_name"]
@@ -82,7 +81,6 @@ def bot_cor(room_id, lon, lat, dp):
 
     response = json.loads(response.text)
     post_message(room_id, " **Place :**"+dp+"\n\n"+"**Nearest Airport :**"+response['name']+"\n\n"+"**Airport Code :**"+response['iata']+"\n\n"+"**Airport Location :**"+response["location"])
-    print(res["code"])
 
 
 @app.route('/', methods=['POST'])
