@@ -11,7 +11,7 @@ def name(person_id):
     headers = {'Authorization': 'Bearer ' + access_token, 'content-type': 'application/json'}
     response = requests.get("https://api.ciscospark.com/v1/people/" + person_id, headers=headers)
     response = json.loads(response.text)
-    return response["displayName"]
+    return response["firstname"]
 
 
 def get_text(text_id):
@@ -32,7 +32,7 @@ def post_message(room_id, text):
 def bot_greets(room_id, person_id):
     post_message(room_id, "Hello " + name(person_id) + ", I am a Demo Bot! I can help you find nearest Airport, Simply provide me "
                                                        "the name of any place and I will return nearest "
-                                                       "Airport details \n\n- type **loc &lt;place&gt;** Example: loc Hampi **or** loc Chandler, Arizona")
+                                                       "Airport details \n\n- type **loc &lt;place&gt;** Example: **loc Hampi** or **loc Chandler, Arizona**")
 
 
 def bot_invalid(room_id):
