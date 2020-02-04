@@ -104,7 +104,7 @@ def main():
         elif "Nearest" in text:
             text = text.replace("Nearest", "")
     text = text.strip()
-        print(text)
+    print(text)
     if text.lower() == "hi" or text.lower() == "hello" or text.lower() == "help":
         bot_greets(room_id, person_id)
     elif len(text) <= 4:
