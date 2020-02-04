@@ -65,7 +65,7 @@ def bot_cor(room_id, lon, lat, dp):
 
     head = {
         'x-rapidapi-host': "cometari-airportsfinder-v1.p.rapidapi.com",
-        'x-rapidapi-key': "0d9e22f3aamsh555874dd0c2b481p1b3244jsn430ecfb5fd9a"
+        'x-rapidapi-key': "a0ff15293cmsh90b4c227a309657p1fa429jsn1de1b4d95554"
     }
 
     res = requests.request("GET", link, headers=head, params=data)
