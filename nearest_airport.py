@@ -71,6 +71,7 @@ def bot_cor(room_id, lon, lat, dp):
     res = requests.request("GET", link, headers=head, params=data)
     res = json.loads(res.text)
     code = res["code"]
+    print(code)
     link = "https://airport-info.p.rapidapi.com/airport"
 
     data = {"iata": code}
