@@ -99,7 +99,7 @@ def main():
     print(text)
     room_type = data["roomType"]
     if room_type == "group":
-        text = text.lstrip("Nearest Airport")
+        text = text.replace("Nearest Airport", "")
         text = text.strip()
         print(text)
     if text.lower() == "hi" or text.lower() == "hello" or text.lower() == "help":
