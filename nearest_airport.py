@@ -99,8 +99,11 @@ def main():
     print(text)
     room_type = data["roomType"]
     if room_type == "group":
-        text = text.replace("Nearest Airport", "")
-        text = text.strip()
+        if "Nearest Airport" in text:
+            text = text.replace("Nearest Airport", "")
+        elif "Nearest" in text:
+            text = text.replace("Nearest", "")
+    text = text.strip()
         print(text)
     if text.lower() == "hi" or text.lower() == "hello" or text.lower() == "help":
         bot_greets(room_id, person_id)
