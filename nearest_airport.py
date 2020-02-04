@@ -41,7 +41,7 @@ def bot_invalid(room_id):
 
 
 def bot_loc(room_id, loc):
-    try:
+    
         url = "https://us1.locationiq.com/v1/search.php"
 
         data = {'key': '38811a440c2ff2','q': loc,'format': 'json'}
@@ -52,7 +52,7 @@ def bot_loc(room_id, loc):
         lon = response[0]["lon"]
         dp = response[0]["display_name"]
         bot_cor(room_id, lon, lat, dp)
-    except:
+    
         print(loc) 
         post_message(room_id, "Could not find the place, try modiyfing the keyword or be more specific by adding the state/country of place as given below\n\n"+"**loc **"+loc+", **&lt;State/Country&gt;**")
 
