@@ -51,7 +51,7 @@ def bot_loc(room_id, loc):
         lat = response[0]["lat"]
         lon = response[0]["lon"]
         dp = response[0]["display_name"]
-        print(response.text)
+        print(response)
         bot_cor(room_id, lon, lat, dp)
     
         print(loc) 
